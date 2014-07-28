@@ -3,7 +3,7 @@ pheonix
 
 rising from the ashes
 
-## configure-apache.yml
+### configure-apache.yml
 
 run with 
 ./go-configure-apache.sh <HOST> <USER> <KEY>
@@ -11,14 +11,12 @@ run with
 optionally, override web_user and/or web_group
 ./go-configure-apache.sh <HOST> <USER> <KEY> "web_user=other-user web_group=other-group"
 
-##aws ec2
-
-## install apache
+#### install apache
 ```bash
-    yum install httpd
+    yum install httpd php
 ````
 
-## create user and groups access
+#### create user and groups access
 ```bash
     sudo groupadd web
     sudo useradd -G web -m <user>
@@ -29,24 +27,23 @@ optionally, override web_user and/or web_group
     # confirm permissions
 ```
 
-## setup new vserver
-
-###### create web directories
+#### create apache instance
+##### create web directories
 .../var/www/<site>
 ....../htdocs
 ....../logs
 
-###### set correct permissions
+##### set correct permissions
 ```bash
     chown -R ..
     chgrp -R ..
     chmod -R 775 /var/www
 ```
 
-###### enable virtualhost *:80
+##### enable virtualhost *:80
 > NameVirtualHost *:80 in httpd.conf
 
-## site.conf
+##### site.conf
 ```xml
     <VirtualHost *:80>
         DocumentRoot /var/www/<site>/htdocs
@@ -60,7 +57,7 @@ optionally, override web_user and/or web_group
     </VirtualHost>
 ```
 
-## start apache
+#### re/start apache
 ```bash
     service httpd start
 ```
