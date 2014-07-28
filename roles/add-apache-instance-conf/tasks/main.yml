@@ -1,3 +1,8 @@
 ---
- - name: "debug. just a shell"
-   debug: msg="just a shell"
+ - name: "copy _template.conf to remote as {{ site }}.conf"
+   copy: src=../files/_template.conf dest="/etc/httpd/conf.d/{{ site }}.conf" owner="{{ web_user }}" group="{{ web_group }}" mode=0644
+   sudo: yes
+
+ - name: "update {{ site }}.conf with {{ site }} details"
+   replace: dest="/etc/httpd/conf.d/{{ site }}.conf" regexp='{{\ site\ }}' replace="{{ site }}"
+   sudo: yes
