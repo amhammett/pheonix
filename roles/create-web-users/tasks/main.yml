@@ -1,7 +1,7 @@
 ---
- - name: "create web group"
+ - name: "create web group {{ web_group }}"
    group: name="{{ web_group }}" state=present
 
- - name: "create web user"
+ - name: "create web user {{ web_user }} with group {{ web_group }}"
    user: name="{{ web_user }}" generate_ssh_key=yes group="{{ web_group }}"
    sudo: yes
