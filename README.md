@@ -3,6 +3,13 @@ pheonix
 
 rising from the ashes
 
+# configure-apache.yml
+
+run with 
+./go-configure-apache.sh <HOST> <USER> <KEY>
+
+optionally, override web_user and/or web_group
+./go-configure-apache.sh <HOST> <USER> <KEY> "web_user=other-user web_group=other-group"
 
 #aws ec2
 
