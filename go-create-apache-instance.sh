@@ -1,7 +1,11 @@
 #!/bin/bash
 
-host=$1
-user=$2
+HOST=$1
+USER=$2
+KEY_FILE=$3
 
-ansible-playbook create-apache-instance.yml -i $1, \
-  --extra-vars "user=$2" 
+shift 3
+
+ansible-playbook create-apache-instance.yml -i $HOST, \
+  --user=$USER --private-key=$KEY_FILE \
+  --extra-vars "$@"

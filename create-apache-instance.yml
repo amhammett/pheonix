@@ -2,6 +2,6 @@
  - hosts: all
 
    roles:
-    - add-site-conf
-    - create-site-directories
+    - add-apache-instance-conf
+    - create-apache-instance-directories
     - reload-apache
