@@ -46,16 +46,16 @@ NameVirtualHost *:80 in httpd.conf
 
 # site.conf
 ```xml
-<VirtualHost *:80>
-    DocumentRoot /var/www/<site>/htdocs
-    ServerName <site>
-    ServerAlias <site>
+    <VirtualHost *:80>
+        DocumentRoot /var/www/<site>/htdocs
+        ServerName <site>
+        ServerAlias <site>
 
-    # logs
-    ErrorLog /var/www/<site>/logs/error.log
-    CustomLog /var/www/<site>/logs/access.log common
-#    php_value error_log /var/www/<site>/logs/php_error.log
-</VirtualHost>
+        # logs
+        ErrorLog /var/www/<site>/logs/error.log
+        CustomLog /var/www/<site>/logs/access.log common
+    #    php_value error_log /var/www/<site>/logs/php_error.log
+    </VirtualHost>
 ```
 
 # start apache
