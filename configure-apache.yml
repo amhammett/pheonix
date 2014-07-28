@@ -1,6 +1,10 @@
 ---
  - hosts: all
 
+   vars: 
+     web_user: web
+     web_group: web
+
    roles:
     - install-apache-packages
     - create-web-users
