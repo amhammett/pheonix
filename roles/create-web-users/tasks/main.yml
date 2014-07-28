@@ -1,3 +1,7 @@
 ---
- - name: "debug. just a shell"
-   debug: msg="just a shell"
+ - name: "create web group"
+   group: name="{{ web_group }}" state=present
+
+ - name: "create web user"
+   user: name="{{ web_user }}" generate_ssh_key=yes group="{{ web_group }}"
+   sudo: yes
