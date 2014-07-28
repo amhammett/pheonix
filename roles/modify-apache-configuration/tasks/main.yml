@@ -1,0 +1,3 @@
+---
+ - name: "enable NameVirtualHost in httpd.conf"
+   replace:  dest=/etc/httpd/conf/httpd.conf regexp='^#NameVirtualHost' replace='NameVirtualHost'

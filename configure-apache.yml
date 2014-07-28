@@ -4,3 +4,4 @@
    roles:
     - install-apache-packages
     - create-web-users
+    - modify-apache-configuration
