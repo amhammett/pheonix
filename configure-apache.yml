@@ -1,0 +1,7 @@
+---
+ - hosts: all
+
+   roles:
+    - install-apache-packages
+    - create-web-users
+    - create-web-directories

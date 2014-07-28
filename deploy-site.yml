@@ -1,0 +1,12 @@
+---
+ - hosts: all
+
+   roles:
+#    - add-site-conf
+#    - create-site-directories
+#    - reload-apache
+    - clone-latest-code
+    - deploy-code
+    - reload-apache
+    - verify-site
+#    - switch-site-live
