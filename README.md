@@ -45,6 +45,7 @@ chmod -R 775 /var/www
 NameVirtualHost *:80 in httpd.conf
 
 # site.conf
+```xml
 <VirtualHost *:80>
     DocumentRoot /var/www/<site>/htdocs
     ServerName <site>
@@ -55,6 +56,7 @@ NameVirtualHost *:80 in httpd.conf
     CustomLog /var/www/<site>/logs/access.log common
 #    php_value error_log /var/www/<site>/logs/php_error.log
 </VirtualHost>
+```
 
 # start apache
 service httpd start
