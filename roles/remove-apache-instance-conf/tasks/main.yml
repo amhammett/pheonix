@@ -1,3 +1,4 @@
 ---
- - name: "debug. just a shell"
-   debug: msg="just a shell"
+ - name: "remove {{ site }}.conf in /etc/httpd/conf.d/"
+   file: path="/etc/httpd/conf.d/{{ site }}.conf" state="absent"
+   sudo: yes

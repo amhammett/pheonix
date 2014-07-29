@@ -1,3 +1,4 @@
 ---
- - name: "debug. just a shell"
-   debug: msg="just a shell"
+ - name: "remove {{ site }}.conf in /var/www/"
+   file: path="/var/www/{{ site }}" state="absent"
+   sudo: yes
