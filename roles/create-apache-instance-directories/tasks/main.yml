@@ -1,3 +1,8 @@
 ---
- - name: "debug. just a shell"
-   debug: msg="just a shell"
+ - name: "create apache instance directories"
+   file: path="{{ item }}" owner="{{ web_user }}" group="{{ web_group }}" mode="2775" state="directory"
+   with_items:
+     - "/var/www/{{ site }}"
+     - "/var/www/{{ site }}/htdocs"
+     - "/var/www/{{ site }}/logs"
+   sudo: yes
