@@ -21,6 +21,12 @@ below is the equivalent manual process of installing packages but this functiona
     yum install httpd php
 ```
 
+#### modify-apache-configuration
+by default, apache has this configuration disabled. enabled to allow site-specific site.conf files
+> /etc/httpd/conf/httpd.conf
+> enable, remove '#'
+> NameVirtualHost *:80
+
 ### create-web-users
 below is the equivalent manual process of creating users/groups but this functionality is provided using the ansible user and group module. 
 ```bash
@@ -48,10 +54,10 @@ optionally, override web_user and/or web_group
 #### create web directories
 structure is based under /var/www but basedir could be configured anywhere.
 todo: set basedir as var
-.../var/www/_site_
-....../htdocs
-....../logs
-_site_ to be replaced by sitename provided
+   /var/www/\_site\_
+      /htdocs
+      /logs
+\_site\_ to be replaced by sitename provided
 
 #### set correct permissions
 simple permission structure. web user and web group ownership. 
@@ -61,24 +67,18 @@ simple permission structure. web user and web group ownership.
     chmod -R 775 /var/www
 ```
 
-#### enable virtualhost *:80
-by default, apache has this configuration disabled. enabled to allow site-specific site.conf files
-> /etc/httpd/conf/httpd.conf
-> enable, remove '#'
-> NameVirtualHost *:80
-
 #### site.conf
-all site.conf files follow the same format. _site_ to be replaced by sitename provided
+all site.conf files follow the same format. \_site\_  to be replaced by sitename provided
 ```xml
     <VirtualHost *:80>
-        DocumentRoot /var/www/_site_/htdocs
-        ServerName _site_
-        ServerAlias _site_
+        DocumentRoot /var/www/\_site\_ /htdocs
+        ServerName \_site\_ 
+        ServerAlias \_site\_ 
 
         ## logs
-        ErrorLog /var/www/_site_/logs/error.log
-        CustomLog /var/www/_site_/logs/access.log common
-        php_value error_log /var/www/_site_/logs/php_error.log
+        ErrorLog /var/www/\_site\_ /logs/error.log
+        CustomLog /var/www/\_site\_ /logs/access.log common
+        php_value error_log /var/www/\_site\_ /logs/php_error.log
     </VirtualHost>
 ```
 
