@@ -51,12 +51,12 @@ Create an apache instance for a site or site environment.
 
 Run with 
 ```bash
-    ./go-configure-apache.sh <HOST> <USER> <KEY>
+    ./go-create-apache-instance.sh <HOST> <USER> <KEY>
 ```
 
 Optionally, override web_user and/or web_group
 ```bash
-    ./go-configure-apache.sh <HOST> <USER> <KEY> "web_user=other-user web_group=other-group"
+    ./go-create-apache-instance.sh <HOST> <USER> <KEY> "web_user=other-user web_group=other-group"
 ```
 
 #### create web directories
@@ -65,7 +65,7 @@ Create the structure for a site or environment.
 **todo: based under /var/www but basedir could be configured anywhere.*
 
 ```
-   /var/www/\_site\_
+   /var/www/_site_
       /htdocs
       /logs
 ```
@@ -87,21 +87,21 @@ Apache instance configuration defined in site.conf. All site.conf files follow t
 
 ```xml
     <VirtualHost *:80>
-        DocumentRoot /var/www/\_site\_ /htdocs
-        ServerName \_site\_ 
-        ServerAlias \_site\_ 
+        DocumentRoot /var/www/_site_/htdocs
+        ServerName _site_
+        ServerAlias _site_ 
 
         ## logs
-        ErrorLog /var/www/\_site\_ /logs/error.log
-        CustomLog /var/www/\_site\_ /logs/access.log common
-        php_value error_log /var/www/\_site\_ /logs/php_error.log
+        ErrorLog /var/www/_site_/logs/error.log
+        CustomLog /var/www/_site_/logs/access.log common
+        php_value error_log /var/www/_site_/logs/php_error.log
     </VirtualHost>
 ```
 
 \_site\_  to be replaced by sitename provided
 
-### re/start apache
-If new config files have been added then apache reload/restart is required
+### reload apache
+If new config files have been added then apache reload is required
 
 **todo: is this possible without apache downtime?**
 
@@ -109,7 +109,28 @@ If new config files have been added then apache reload/restart is required
     service httpd start
 ```
 
-### other
+## destroy-apache-instance.yml 
+Remove an apache instance for a site or site environment.
+
+Run with 
+```bash
+    ./go-destroy-apache-instance.sh <HOST> <USER> <KEY>
+```
+
+Optionally, override web_user and/or web_group
+```bash
+    ./go-configure-apache.sh <HOST> <USER> <KEY>
+```
+### remove-apache-instance-conf
+Delete site.conf in /etc/httpd/conf.d
+
+### remove-apache-instance-directories
+Delete /var/www/_site_ and all sub files/directories
+
+### reload-apache
+Reload apache to finish off the removal of the instance
+
+## other
 
     # create or use local ssh key
     # send to ec2 and add to known hosts
