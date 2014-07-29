@@ -4,5 +4,5 @@
    sudo: yes
 
  - name: "update {{ site }}.conf with {{ site }} details"
-   replace: dest="/etc/httpd/conf.d/{{ site }}.conf" regexp='{{\ site\ }}' replace="{{ site }}"
+   replace: dest="/etc/httpd/conf.d/{{ site }}.conf" regexp='_site_' replace="{{ site }}"
    sudo: yes
