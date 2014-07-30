@@ -3,7 +3,8 @@ pheonix
 
 rising from the ashes
 
-## configure-apache.yml
+configure-apache.yml
+--------------------
 The usual tasks that are required to create apache instances. 
 
 Run with 
@@ -46,7 +47,8 @@ Below is the equivalent manual process of creating users/groups but this functio
     passwd <user>
 ```
 
-## create-apache-instance.yml 
+create-apache-instance.yml 
+--------------------------
 Create an apache instance for a site or site environment.
 
 Run with 
@@ -109,7 +111,8 @@ If new config files have been added then apache reload is required
     service httpd start
 ```
 
-## destroy-apache-instance.yml 
+destroy-apache-instance.yml 
+----------------------------
 Remove an apache instance for a site or site environment.
 
 Run with 
@@ -117,10 +120,6 @@ Run with
     ./go-destroy-apache-instance.sh <HOST> <USER> <KEY>
 ```
 
-Optionally, override web_user and/or web_group
-```bash
-    ./go-configure-apache.sh <HOST> <USER> <KEY>
-```
 ### remove-apache-instance-conf
 Delete site.conf in /etc/httpd/conf.d
 
@@ -130,8 +129,46 @@ Delete /var/www/_site_ and all sub files/directories
 ### reload-apache
 Reload apache to finish off the removal of the instance
 
-## other
+deploy-site.yml
+----------------
+Deploy code/content to a site environment
 
+Run with 
+```bash
+    ./go-deploy-site.sh <HOST> <USER> <KEY> <SITE>
+```
+
+Optionally, override web_user and/or web_group
+```bash
+    ./go-deploy-site.sh <HOST> <USER> <KEY> <SITE>
+```
+
+### clone-latest-code
+get the latest code/content for the site
+
+```bash
+    git clone code.git
+    git clone data.git
+```
+
+### deploy-code
+```ansible
+    file: src=code/ dest=/var/www/<site>/htdocs/
+    file: src=data/ dest=/var/www/<site>/htdocs/data/
+```
+
+### reload-apache
+```ansible
+    service: name=httpd state=reloaded
+```
+
+### verify-site
+```bash
+    curl -s http://<site> | grep "health-check-string"
+```
+
+other
+-----
     # create or use local ssh key
     # send to ec2 and add to known hosts
     # confirm permissions
