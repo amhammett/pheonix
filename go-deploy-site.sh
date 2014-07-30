@@ -7,6 +7,6 @@ SITE=$4
 
 shift 4
 
-ansible-playbook configure-apache.yml -i $HOST, \
+ansible-playbook deploy-site.yml -i $HOST, \
   --user=$USER --private-key=$KEY_FILE \
   --extra-vars "site=$SITE $@"
