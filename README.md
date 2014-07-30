@@ -172,3 +172,6 @@ other
     # create or use local ssh key
     # send to ec2 and add to known hosts
     # confirm permissions
+
+todo:
+- add validation to go scripts
