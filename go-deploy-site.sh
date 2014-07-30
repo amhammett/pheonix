@@ -1,7 +1,12 @@
 #!/bin/bash
 
-host=$1
-user=$2
+HOST=$1
+USER=$2
+KEY_FILE=$3
+SITE=$4
 
-ansible-playbook deploy-site.yml -i $1, \
-  --extra-vars "user=$2" 
+shift 4
+
+ansible-playbook configure-apache.yml -i $HOST, \
+  --user=$USER --private-key=$KEY_FILE \
+  --extra-vars "site=$SITE $@"
