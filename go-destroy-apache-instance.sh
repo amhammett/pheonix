@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ "$#" -lt 3 ]] ; then
+  echo "usage: $0 <host> <user> <ssh-key>"
+  exit 1
+fi
+
 HOST=$1
 USER=$2
 KEY_FILE=$3
