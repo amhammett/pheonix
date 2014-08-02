@@ -1,3 +1,8 @@
 ---
- - name: "debug. just a shell"
-   debug: msg="just a shell"
+ - name: "check site responding"
+   shell: "curl -I http://{{ site }}"
+   register: homepage_header
+
+ - name: "validate request headers"
+   command: "echo 'checking headers'"
+   failed_when: "'200' not in '{{ homepage_header.stdout }}'"
