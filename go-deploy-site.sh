@@ -14,4 +14,4 @@ shift 4
 
 ansible-playbook deploy-site.yml -i $HOST, \
   --user=$USER --private-key=$KEY_FILE \
-  --extra-vars "site=$SITE $@"
+  --extra-vars="site=$SITE $@"
