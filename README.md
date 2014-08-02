@@ -133,6 +133,15 @@ deploy-site.yml
 ----------------
 Deploy code/content to a site environment
 
+### requirements
+git repositories need to be structured
+
+```files
+    site.git
+        \htdocs - html content
+        \test   - test cases
+```
+
 Run with 
 ```bash
     ./go-deploy-site.sh <HOST> <USER> <KEY> <SITE>
@@ -140,11 +149,16 @@ Run with
 
 Optionally, override web_user and/or web_group
 ```bash
-    ./go-deploy-site.sh <HOST> <USER> <KEY> <SITE>
+    ./go-deploy-site.sh <HOST> <USER> <KEY> <SITE> "code-repo=foo.git site-repo=bar.git"
 ```
 
-### clone-latest-code
-get the latest code/content for the site
+### prepare-launch-site
+Prepare working area for site before cloning, integrating and deploying to hosting.
+
+Create /tmp/deploy/<site> if it doesn't exist. Clear contents.
+
+### clone-repository
+clone the supplied repository to local in preparation for launching on target
 
 ```bash
     git clone code.git
@@ -163,6 +177,8 @@ get the latest code/content for the site
 ```
 
 ### verify-site
+Both code and data have test 
+
 ```bash
     curl -s http://<site> | grep "health-check-string"
 ```
