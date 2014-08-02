@@ -1,0 +1,8 @@
+---
+ - name: "create workspace"
+   file: path="{{ workspace }}" state="directory"
+   delegate_to: 127.0.0.1
+
+ - name: "clean workspace"
+   command: "rm -rf {{ workspace }}/*"
+   delegate_to: 127.0.0.1
