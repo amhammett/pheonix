@@ -1,4 +1,4 @@
 ---
  - name: "clean workspace {{ workspace }}"
-   shell: "rm -rf {{workspace}}/*.git"
+   shell: "rm -rf {{workspace}}/*"
    delegate_to: 127.0.0.1
