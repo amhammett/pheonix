@@ -1,6 +1,7 @@
 ---
  - name: "debug git repo"
    debug: msg="{{ repository }}"
+   delegate_to: 127.0.0.1
    when: false
 
  - name: "clone repository {{ repository }}"
