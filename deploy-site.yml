@@ -1,12 +1,16 @@
 ---
  - hosts: all
 
+   vars:
+     - site: foo.bar
+     - code_repo: git@bitbucket.org:ahammett/foo.bar-data.git
+     - data_repo: https://github.com/amhammett/foo.bar.git
+
    roles:
-#    - add-site-conf
-#    - create-site-directories
-#    - reload-apache
-    - clone-latest-code
-    - deploy-code
+    - prepare-launch-site
+    - { role: clone-repository, repository: code_repo }
+    - { role: clone-repository, repository: data_repo }
+    - launch-site
     - reload-apache
     - verify-site
 #    - switch-site-live
