@@ -7,4 +7,4 @@
  - name: "clone repository {{ repository }}"
    git: repo="{{ repository }}" dest="{{ workspace }}/{{ repository | basename }}"
    delegate_to: 127.0.0.1
-   when: "repository.find('foo.bar') != -1"
+   when: "repository.find('foo.bar') == -1"
